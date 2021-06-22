@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("lamp.png");
+
+  /* Full height */
+  height: 100%; 
+  filter: brightness(.8);
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>
+</head>
+<body>
+
+<div class="bg">
+<input type="button" value="FULLSCREEN" onclick="requestFullScreen()">
+</div>
+
+<script>
+function requestFullScreen() {
+
+  var el = document.body;
+
+  // Supports most browsers and their versions.
+  var requestMethod = el.requestFullScreen || el.webkitRequestFullScreen 
+  || el.mozRequestFullScreen || el.msRequestFullScreen;
+
+  if (requestMethod) {
+
+    // Native full screen.
+    requestMethod.call(el);
+
+  } else if (typeof window.ActiveXObject !== "undefined") {
+
+    // Older IE.
+    var wscript = new ActiveXObject("WScript.Shell");
+
+    if (wscript !== null) {
+      wscript.SendKeys("{F11}");
+    }
+  }
+}
+</script>
+
+
+</body>
+</html>
